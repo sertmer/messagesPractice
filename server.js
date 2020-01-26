@@ -31,13 +31,14 @@ server.on('request', (request, response) => {
 });
 
 const getAllMessages = (response) => {
-  response.writeHead(200, 'Nice Job!', { 'Content-Type': 'text/plain' });
+  response.writeHead(200, 'Nice Job!', { 'Content-Type': 'application/json' });
   response.write(JSON.stringify(messages));
   response.end();
 }
 
 const addMessage = (newMessage, response) => {
- response.writeHead(201, 'message delivered', { 'Content-Type': 'text/plain' });
- response.write(JSON.stringify(newMessage));
- response.end();
+  messages.push(newMessage)
+  response.writeHead(201, 'message delivered', { 'Content-Type': 'application/json' });
+  response.write(JSON.stringify(newMessage));
+  response.end();
 }
